@@ -39,9 +39,11 @@ public final class WeatherRamActivity extends Activity {
     private final Handler main = new Handler(Looper.getMainLooper());
     private final Runnable tick = this::refreshWeather;
     private final Runnable ramTick = this::refreshRam;
+    private final Runnable clockTick = this::refreshClock;
     private SharedPreferences place;
     private View root;
     private TextView message;
+    private TextView clockView;
     private TextView placeView;
     private TextView tempView;
     private TextView skyView;
@@ -69,6 +71,7 @@ public final class WeatherRamActivity extends Activity {
         setContentView(root);
 
         message = text(dp(26), true);
+        clockView = text(dp(24), true);
         placeView = text(dp(30), true);
         tempView = text(dp(96), true);
         skyView = text(dp(30), true);
@@ -124,6 +127,7 @@ public final class WeatherRamActivity extends Activity {
         super.onResume();
         resumed = true;
         refreshRam();
+        refreshClock();
         if (place.contains("name")) refreshWeather();
     }
 
@@ -134,13 +138,24 @@ public final class WeatherRamActivity extends Activity {
         requestId++;
         searchId++;
         main.removeCallbacks(tick);
-        main.removeCallbacks(ramTick);   // nothing runs while the page is not on screen
+        main.removeCallbacks(ramTick);
+        main.removeCallbacks(clockTick);   // nothing runs while the page is not on screen
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         io.shutdownNow();
+    }
+
+    /** The time and date line, locale-formatted, ticking every second while the page is on screen. */
+    private void refreshClock() {
+        main.removeCallbacks(clockTick);
+        if (!resumed) return;
+        Date now = new Date();
+        clockView.setText(DateFormat.getTimeFormat(this).format(now) + " \u00b7 "
+                + DateFormat.getDateFormat(this).format(now));
+        main.postDelayed(clockTick, 1000L);
     }
 
     private void refreshWeather() {
