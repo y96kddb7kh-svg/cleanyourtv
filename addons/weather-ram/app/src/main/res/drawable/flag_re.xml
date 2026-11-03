@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The flag of La Reunion: red over blue with the gold sun and the volcano. Drawn for this add-on, no third-party art. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="16dp"
+    android:viewportWidth="36" android:viewportHeight="24">
+    <path android:fillColor="#FFED1C24" android:pathData="M0,0h36v12h-36z" />
+    <path android:fillColor="#FF002395" android:pathData="M0,12h36v12h-36z" />
+    <path android:fillColor="#FFFFD700" android:pathData="M18,7m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0" />
+    <path android:fillColor="#FF1A1A1A" android:pathData="M18,4 L24,20 L12,20 z" />
+    <path android:fillColor="#FFED1C24" android:pathData="M18,4 L20.5,9 L15.5,9 z" />
+</vector>

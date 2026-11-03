@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- The French tricolor, the flag of both La Reunion and Martinique. Drawn for this add-on, no third-party art. -->
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp" android:height="16dp"
-    android:viewportWidth="36" android:viewportHeight="24">
-    <path android:fillColor="#FF0055A4" android:pathData="M0,0h12v24h-12z" />
-    <path android:fillColor="#FFFFFFFF" android:pathData="M12,0h12v24h-12z" />
-    <path android:fillColor="#FFEF4135" android:pathData="M24,0h12v24h-12z" />
-</vector>

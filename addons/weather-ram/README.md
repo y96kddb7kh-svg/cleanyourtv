@@ -1,8 +1,9 @@
 # Sky & RAM
 
 One full-screen page with the **time and date, the local weather and the RAM in use**: a clock line, the time in
-St Denis (La Réunion) and Fort-de-France (Martinique) with their flags (both French territories, so the
-tricolor), the city, the temperature now, the conditions and feels-like, and a memory bar with its percentage. For the [Clean Your TV](../../README.md)
+St Denis (La Réunion) and Fort-de-France (Martinique) with their department flags (La Réunion's volcano flag,
+Martinique's snake flag, drawn as vectors), the city, the temperature now, the conditions and feels-like, and a
+memory bar with its percentage. For the [Clean Your TV](../../README.md)
 launcher it declares a [module card](../../docs/modules.md), so once you answer **Show card** its tile reads
 "Sky & RAM" with a sky-blue glow; on any other Android TV home it is an ordinary app.
 

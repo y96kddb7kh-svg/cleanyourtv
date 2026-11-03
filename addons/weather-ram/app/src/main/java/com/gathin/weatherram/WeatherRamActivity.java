@@ -84,14 +84,14 @@ public final class WeatherRamActivity extends Activity {
         zonesRow.setGravity(Gravity.CENTER_HORIZONTAL);
         ((LinearLayout) root).addView(zonesRow, new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        zoneOneView = zone(zonesRow);
+        zoneOneView = zone(zonesRow, R.drawable.flag_re);
         TextView separator = new TextView(this);
         separator.setText(R.string.zone_separator);
         separator.setTextSize(22);
         separator.setTextColor(0xE6FFFFFF);
         separator.setPadding(dp(16), dp(6), dp(16), dp(6));
         zonesRow.addView(separator);
-        zoneTwoView = zone(zonesRow);
+        zoneTwoView = zone(zonesRow, R.drawable.flag_mq);
         placeView = text(dp(30), true);
         tempView = text(dp(96), true);
         skyView = text(dp(30), true);
@@ -142,10 +142,10 @@ public final class WeatherRamActivity extends Activity {
         return Math.round(value * getResources().getDisplayMetrics().density);
     }
 
-    /** One zone of the row: its flag, then "name time"; the second zone gets the separator in front. */
-    private TextView zone(LinearLayout row) {
+    /** One zone of the row: its department's flag, then "name time". */
+    private TextView zone(LinearLayout row, int flagResource) {
         android.widget.ImageView flag = new android.widget.ImageView(this);
-        flag.setImageResource(R.drawable.flag_fr);
+        flag.setImageResource(flagResource);
         LinearLayout.LayoutParams flagParams = new LinearLayout.LayoutParams(dp(36), dp(24));
         flagParams.setMargins(dp(16), dp(6), dp(8), 0);
         row.addView(flag, flagParams);
