@@ -16,6 +16,9 @@
     <string name="ram_line">%1$d%% sur %2$s</string>
     <string name="ram_unknown">Mémoire indisponible</string>
     <string name="change_city">Changer de ville</string>
+    <string name="zone_reunion">St Denis</string>
+    <string name="zone_martinique">Fort de France</string>
+    <string name="zones_line">%1$s %2$s \u00b7 %3$s %4$s</string>
     <string name="updated">Mis à jour à %1$s</string>
     <string name="temperature_unit">c</string>
 

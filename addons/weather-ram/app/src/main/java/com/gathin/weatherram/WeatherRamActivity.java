@@ -19,8 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileReader;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -44,6 +49,7 @@ public final class WeatherRamActivity extends Activity {
     private View root;
     private TextView message;
     private TextView clockView;
+    private TextView zonesView;
     private TextView placeView;
     private TextView tempView;
     private TextView skyView;
@@ -72,6 +78,7 @@ public final class WeatherRamActivity extends Activity {
 
         message = text(dp(26), true);
         clockView = text(dp(24), true);
+        zonesView = text(dp(22), false);
         placeView = text(dp(30), true);
         tempView = text(dp(96), true);
         skyView = text(dp(30), true);
@@ -148,13 +155,18 @@ public final class WeatherRamActivity extends Activity {
         io.shutdownNow();
     }
 
-    /** The time and date line, locale-formatted, ticking every second while the page is on screen. */
+    /** The time and date line plus the two other zones, locale-formatted, ticking every second on screen. */
     private void refreshClock() {
         main.removeCallbacks(clockTick);
         if (!resumed) return;
         Date now = new Date();
         clockView.setText(DateFormat.getTimeFormat(this).format(now) + " \u00b7 "
                 + DateFormat.getDateFormat(this).format(now));
+        DateTimeFormatter time = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT, FormatStyle.SHORT)
+                .withLocale(Locale.getDefault());
+        zonesView.setText(getString(R.string.zones_line,
+                getString(R.string.zone_reunion), LocalTime.now(ZoneId.of("Indian/Reunion")).format(time),
+                getString(R.string.zone_martinique), LocalTime.now(ZoneId.of("America/Martinique")).format(time)));
         main.postDelayed(clockTick, 1000L);
     }
 
