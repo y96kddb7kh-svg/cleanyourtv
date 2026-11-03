@@ -18,7 +18,8 @@
     <string name="change_city">Changer de ville</string>
     <string name="zone_reunion">St Denis</string>
     <string name="zone_martinique">Fort de France</string>
-    <string name="zones_line">%1$s %2$s \u00b7 %3$s %4$s</string>
+    <string name="zone_line">%1$s %2$s</string>
+    <string name="zone_separator">\u00b7</string>
     <string name="updated">Mis à jour à %1$s</string>
     <string name="temperature_unit">c</string>
 

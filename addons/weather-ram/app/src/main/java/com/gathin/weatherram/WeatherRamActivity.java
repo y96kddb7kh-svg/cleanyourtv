@@ -49,7 +49,8 @@ public final class WeatherRamActivity extends Activity {
     private View root;
     private TextView message;
     private TextView clockView;
-    private TextView zonesView;
+    private TextView zoneOneView;
+    private TextView zoneTwoView;
     private TextView placeView;
     private TextView tempView;
     private TextView skyView;
@@ -78,7 +79,19 @@ public final class WeatherRamActivity extends Activity {
 
         message = text(dp(26), true);
         clockView = text(dp(24), true);
-        zonesView = text(dp(22), false);
+        LinearLayout zonesRow = new LinearLayout(this);
+        zonesRow.setOrientation(LinearLayout.HORIZONTAL);
+        zonesRow.setGravity(Gravity.CENTER_HORIZONTAL);
+        ((LinearLayout) root).addView(zonesRow, new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        zoneOneView = zone(zonesRow);
+        TextView separator = new TextView(this);
+        separator.setText(R.string.zone_separator);
+        separator.setTextSize(22);
+        separator.setTextColor(0xE6FFFFFF);
+        separator.setPadding(dp(16), dp(6), dp(16), dp(6));
+        zonesRow.addView(separator);
+        zoneTwoView = zone(zonesRow);
         placeView = text(dp(30), true);
         tempView = text(dp(96), true);
         skyView = text(dp(30), true);
@@ -129,6 +142,22 @@ public final class WeatherRamActivity extends Activity {
         return Math.round(value * getResources().getDisplayMetrics().density);
     }
 
+    /** One zone of the row: its flag, then "name time"; the second zone gets the separator in front. */
+    private TextView zone(LinearLayout row) {
+        android.widget.ImageView flag = new android.widget.ImageView(this);
+        flag.setImageResource(R.drawable.flag_fr);
+        LinearLayout.LayoutParams flagParams = new LinearLayout.LayoutParams(dp(36), dp(24));
+        flagParams.setMargins(dp(16), dp(6), dp(8), 0);
+        row.addView(flag, flagParams);
+        TextView view = new TextView(this);
+        view.setTextSize(22);
+        view.setTextColor(0xE6FFFFFF);
+        view.setPadding(0, dp(6), 0, dp(6));
+        row.addView(view, new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        return view;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -164,9 +193,10 @@ public final class WeatherRamActivity extends Activity {
                 + DateFormat.getDateFormat(this).format(now));
         DateTimeFormatter time = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT, FormatStyle.SHORT)
                 .withLocale(Locale.getDefault());
-        zonesView.setText(getString(R.string.zones_line,
-                getString(R.string.zone_reunion), LocalTime.now(ZoneId.of("Indian/Reunion")).format(time),
-                getString(R.string.zone_martinique), LocalTime.now(ZoneId.of("America/Martinique")).format(time)));
+        zoneOneView.setText(getString(R.string.zone_line, getString(R.string.zone_reunion),
+                LocalTime.now(ZoneId.of("Indian/Reunion")).format(time)));
+        zoneTwoView.setText(getString(R.string.zone_line, getString(R.string.zone_martinique),
+                LocalTime.now(ZoneId.of("America/Martinique")).format(time)));
         main.postDelayed(clockTick, 1000L);
     }
 
