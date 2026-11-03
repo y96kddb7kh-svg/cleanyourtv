@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- The flag of Martinique: white with the four black serpents. Drawn for this add-on, no third-party art. -->
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp" android:height="16dp"
-    android:viewportWidth="36" android:viewportHeight="24">
-    <path android:fillColor="#FFFFFFFF" android:pathData="M0,0h36v24h-36z" />
-    <path android:fillColor="#FF111111" android:pathData="M5,3h9v3h-6v6h-3z M31,3h-9v3h6v6h3z M5,21h9v-3h-6v-6h-3z M31,21h-9v-3h6v-6h3z" />
-</vector>

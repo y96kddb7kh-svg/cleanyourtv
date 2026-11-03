@@ -17,7 +17,7 @@
     <string name="ram_unknown">Memory unavailable</string>
     <string name="change_city">Change city</string>
     <string name="zone_reunion">St Denis</string>
-    <string name="zone_martinique">Fort de France</string>
+    <string name="zone_martinique">\uD83C\uDDF2\uD83C\uDDF6 Fort de France</string>
     <string name="zone_line">%1$s %2$s</string>
     <string name="zone_separator">\u00b7</string>
     <string name="updated">Updated %1$s</string>

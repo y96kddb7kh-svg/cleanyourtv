@@ -91,7 +91,7 @@ public final class WeatherRamActivity extends Activity {
         separator.setTextColor(0xE6FFFFFF);
         separator.setPadding(dp(16), dp(6), dp(16), dp(6));
         zonesRow.addView(separator);
-        zoneTwoView = zone(zonesRow, R.drawable.flag_mq);
+        zoneTwoView = zone(zonesRow, 0);   // Martinique's flag is the emoji in its name string, not a drawable
         placeView = text(dp(30), true);
         tempView = text(dp(96), true);
         skyView = text(dp(30), true);
@@ -142,13 +142,20 @@ public final class WeatherRamActivity extends Activity {
         return Math.round(value * getResources().getDisplayMetrics().density);
     }
 
-    /** One zone of the row: its department's flag, then "name time". */
+    /** One zone of the row: its flag drawable (0 when the flag is an emoji in the name), then "name time". */
     private TextView zone(LinearLayout row, int flagResource) {
-        android.widget.ImageView flag = new android.widget.ImageView(this);
-        flag.setImageResource(flagResource);
-        LinearLayout.LayoutParams flagParams = new LinearLayout.LayoutParams(dp(36), dp(24));
-        flagParams.setMargins(dp(16), dp(6), dp(8), 0);
-        row.addView(flag, flagParams);
+        if (flagResource != 0) {
+            android.widget.ImageView flag = new android.widget.ImageView(this);
+            flag.setImageResource(flagResource);
+            LinearLayout.LayoutParams flagParams = new LinearLayout.LayoutParams(dp(36), dp(24));
+            flagParams.setMargins(dp(16), dp(6), dp(8), 0);
+            row.addView(flag, flagParams);
+        } else {
+            TextView pad = new TextView(this);
+            pad.setPadding(dp(16), 0, dp(8), 0);
+            row.addView(pad, new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        }
         TextView view = new TextView(this);
         view.setTextSize(22);
         view.setTextColor(0xE6FFFFFF);
