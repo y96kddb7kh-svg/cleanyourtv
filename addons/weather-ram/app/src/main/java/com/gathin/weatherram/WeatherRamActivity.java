@@ -84,7 +84,7 @@ public final class WeatherRamActivity extends Activity {
         zonesRow.setGravity(Gravity.CENTER_HORIZONTAL);
         ((LinearLayout) root).addView(zonesRow, new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        zoneOneView = zone(zonesRow, R.drawable.flag_re);
+        zoneOneView = zone(zonesRow, 0);   // both flags are emoji in the name strings, not drawables
         TextView separator = new TextView(this);
         separator.setText(R.string.zone_separator);
         separator.setTextSize(22);
