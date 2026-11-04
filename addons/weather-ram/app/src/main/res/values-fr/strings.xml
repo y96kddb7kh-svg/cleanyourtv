@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ciel &amp; RAM</string>
+    <string name="pick_first">Choisissez une ville pour voir sa météo</string>
+    <string name="pick_title">Choisir une ville</string>
+    <string name="pick_hint">Nom de la ville</string>
+    <string name="pick_search">Rechercher</string>
+    <string name="pick_none">Aucun lieu ne correspond à %1$s</string>
+    <string name="loading">Chargement\u2026</string>
+    <string name="offline">Hors ligne : la météo n\u2019a pas pu être lue</string>
+    <string name="feels_like">Ressenti %1$d\u00b0</string>
+    <string name="humidity">Humidité %1$d%%</string>
+    <string name="wind">Vent %1$d km/h</string>
+    <string name="wind_mph">Vent %1$d mph</string>
+    <string name="ram_label">Mémoire utilisée</string>
+    <string name="ram_line">%1$d%% sur %2$s</string>
+    <string name="ram_unknown">Mémoire indisponible</string>
+    <string name="change_city">Changer de ville</string>
+    <string name="weather_line">%1$s \u00b7 %2$d\u00b0 \u00b7 %3$s \u00b7 %4$s</string>
+    <string name="zone_reunion">\uD83C\uDDF7\uD83C\uDDEA St Denis</string>
+    <string name="zone_martinique">\uD83C\uDDF2\uD83C\uDDF6 Fort de France</string>
+    <string name="zone_line">%1$s %2$s</string>
+    <string name="zone_separator">\u00b7</string>
+    <string name="updated">Mis à jour à %1$s</string>
+    <string name="temperature_unit">c</string>
+
+    <string name="sky_sunny">Ensoleillé</string>
+    <string name="sky_clear">Dégagé</string>
+    <string name="sky_mostly_sunny">Plutôt ensoleillé</string>
+    <string name="sky_mostly_clear">Plutôt dégagé</string>
+    <string name="sky_partly_cloudy">Partiellement nuageux</string>
+    <string name="sky_cloudy">Nuageux</string>
+    <string name="sky_fog">Brouillard</string>
+    <string name="sky_drizzle">Bruine</string>
+    <string name="sky_freezing_drizzle">Bruine verglaçante</string>
+    <string name="sky_light_rain">Pluie fine</string>
+    <string name="sky_rain">Pluie</string>
+    <string name="sky_heavy_rain">Forte pluie</string>
+    <string name="sky_freezing_rain">Pluie verglaçante</string>
+    <string name="sky_light_snow">Neige fine</string>
+    <string name="sky_snow">Neige</string>
+    <string name="sky_heavy_snow">Forte neige</string>
+    <string name="sky_snow_grains">Grésil</string>
+    <string name="sky_showers">Averses</string>
+    <string name="sky_snow_showers">Averses de neige</string>
+    <string name="sky_thunderstorm">Orage</string>
+</resources>
