@@ -198,7 +198,7 @@ public final class WeatherRamActivity extends Activity {
         Date now = new Date();
         clockView.setText(DateFormat.getTimeFormat(this).format(now) + " \u00b7 "
                 + DateFormat.getDateFormat(this).format(now));
-        DateTimeFormatter time = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT, FormatStyle.SHORT)
+        DateTimeFormatter time = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
                 .withLocale(Locale.getDefault());
         zoneOneView.setText(getString(R.string.zone_line, getString(R.string.zone_reunion),
                 LocalTime.now(ZoneId.of("Indian/Reunion")).format(time)));
