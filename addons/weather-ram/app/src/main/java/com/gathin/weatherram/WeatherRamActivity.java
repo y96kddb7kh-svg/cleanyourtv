@@ -51,11 +51,7 @@ public final class WeatherRamActivity extends Activity {
     private TextView clockView;
     private TextView zoneOneView;
     private TextView zoneTwoView;
-    private TextView placeView;
-    private TextView tempView;
-    private TextView skyView;
-    private TextView detailsView;
-    private TextView updatedView;
+    private TextView weatherView;
     private TextView ramText;
     private View ramFill;
     private boolean resumed;
@@ -78,7 +74,8 @@ public final class WeatherRamActivity extends Activity {
         setContentView(root);
 
         message = text(dp(26), true);
-        clockView = text(dp(24), true);
+        clockView = text(dp(28), true);
+        weatherView = text(dp(22), false);
         LinearLayout zonesRow = new LinearLayout(this);
         zonesRow.setOrientation(LinearLayout.HORIZONTAL);
         zonesRow.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -92,11 +89,6 @@ public final class WeatherRamActivity extends Activity {
         separator.setPadding(dp(16), dp(6), dp(16), dp(6));
         zonesRow.addView(separator);
         zoneTwoView = zone(zonesRow, 0);   // Martinique's flag is the emoji in its name string, not a drawable
-        placeView = text(dp(30), true);
-        tempView = text(dp(96), true);
-        skyView = text(dp(30), true);
-        detailsView = text(dp(22), false);
-        updatedView = text(dp(18), false);
         TextView ramLabel = text(dp(24), true);
         ramLabel.setText(R.string.ram_label);
         ramText = text(dp(24), true);
@@ -121,8 +113,6 @@ public final class WeatherRamActivity extends Activity {
             message.setText(R.string.pick_first);
             message.setVisibility(View.VISIBLE);
             pickCity();
-        } else {
-            placeView.setText(place.getString("name", ""));
         }
         changeCity.requestFocus();
     }
@@ -226,7 +216,7 @@ public final class WeatherRamActivity extends Activity {
                 if (result != null) {
                     show(result);
                     main.postDelayed(tick, Forecast.REFRESH_MS);
-                } else if (tempView.getText().length() == 0) {
+                } else if (weatherView.getText().length() == 0) {
                     message.setText(R.string.offline);
                     message.setVisibility(View.VISIBLE);
                     main.postDelayed(tick, Forecast.RETRY_MS);
@@ -264,18 +254,16 @@ public final class WeatherRamActivity extends Activity {
         });
     }
 
+    /** One compact line under the local clock: city, temperature, sky, then feels-like, humidity and wind. */
     private void show(Forecast.Report r) {
         root.setBackground(Forecast.backdrop(r.code, r.day));
-        placeView.setText(place.getString("name", ""));
-        tempView.setText(Forecast.degrees(r.tempC, fahrenheit) + "°");
-        skyView.setText(Forecast.sky(r.code, r.day));
         StringBuilder details = new StringBuilder();
         details.append(getString(R.string.feels_like, Forecast.degrees(r.feelsC, fahrenheit)));
         details.append(" · ").append(getString(R.string.humidity, r.humidity));
         details.append(" · ").append(fahrenheit ? getString(R.string.wind_mph, Forecast.mph(r.windKmh))
                 : getString(R.string.wind, r.windKmh));
-        detailsView.setText(details);
-        updatedView.setText(getString(R.string.updated, DateFormat.getTimeFormat(this).format(new Date())));
+        weatherView.setText(getString(R.string.weather_line, place.getString("name", ""),
+                Forecast.degrees(r.tempC, fahrenheit), getString(Forecast.sky(r.code, r.day)), details));
         message.setVisibility(View.GONE);
     }
 
@@ -351,8 +339,7 @@ public final class WeatherRamActivity extends Activity {
                             .putLong("lat", Double.doubleToRawLongBits(p.latitude))
                             .putLong("lon", Double.doubleToRawLongBits(p.longitude))
                             .apply();
-                    tempView.setText("");
-                    placeView.setText(p.name);
+                    weatherView.setText("");
                     message.setText(R.string.loading);
                     message.setVisibility(View.VISIBLE);
                     refreshWeather();
